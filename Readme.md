@@ -4,7 +4,7 @@ Those are simple examples which should be better soon.
 
 ## Install:
 1. Clone this repository
-`$ git clone git@github.com:yvguim/mysafeip-client.git
+`$ git clone https://github.com/yvguim/mysafeip-client.git
 `
 
 2. Run bootstrap.sh script.
