@@ -36,8 +36,8 @@ When you are really confident about your config, you can add it in crontab:
 
 <code>
 @reboot root rm /tmp/mysafeip.lock
-* * * * * root /usr/bin/flock -E 0 -n /tmp/mysafeip.lock /home/ubuntu/mysafeip-client.sh >/dev/null 2>&1
+* * * * * root /usr/bin/flock -E 0 -n /tmp/mysafeip.lock /some_path/mysafeip-client/mysafeip-firewall.sh >/dev/null 2>&1
 </code>
 
 
-And that's it, it's a bit more secure around you know ;)
+And that's it, it's a bit more secure around you now ;)
