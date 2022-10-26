@@ -25,6 +25,12 @@ It will output ip registered and valid on your mysafeip server
 
 ## Configure your firewall
 
-`mysafeip-firewall.sh` is an example to run manually then on crontab (with flock for example)
+`mysafeip-firewall.sh` is an example to run manually. Try it and adapt firewall rules to your nedd.
+
+When you are really confident about your config, you can add it in crontab:
+
+```@reboot root rm /tmp/mysafeip.lock
+* * * * * root /usr/bin/flock -E 0 -n /tmp/mysafeip.lock /home/ubuntu/mysafeip-client.sh >/dev/null 2>&1```
+
 
 And that's it, it's a bit more secure around you know ;)
