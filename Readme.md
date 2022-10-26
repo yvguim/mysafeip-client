@@ -21,4 +21,10 @@ Then run get-ip.py for example:
 `python get-ips.py
 `
 
-And that's it ;)
+It will output ip registered and valid on your mysafeip server
+
+## Configure your firewall
+
+`mysafeip-firewall.sh` is an example to run manually then on crontab (with flock for example)
+
+And that's it, it's a bit more secure around you know ;)
