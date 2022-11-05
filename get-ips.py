@@ -7,6 +7,5 @@ cli.do_auth(set.login_url)
 json = ''
 r = cli.do_get(set.get_ips_url,json)
 jsonObject = j.loads(r.text)
-
 for ip in jsonObject:
     print(ip['value'])

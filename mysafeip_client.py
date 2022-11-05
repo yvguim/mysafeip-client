@@ -11,7 +11,8 @@ class Client():
     def do_auth(self, url):
         data = {
             "username": self.username,
-            "password": self.password
+            "password": self.password,
+            "scope": "cli"
         }
         r = requests.post(url=url, data=data)
         response_text = r.text
@@ -19,18 +20,20 @@ class Client():
         self.token = d['access_token']
         return d
     
-    def do_post(self, url, json):
+    def do_post(self, url, data):
         headers = {
-            'Authorization': ('Bearer ' + self.token)
+            'Authorization': ('Bearer ' + self.token),
+            'Cli': 'cli'
         }
-        response = requests.post(url, headers=headers, json=json)
+        response = requests.post(url, headers=headers, data=data)
         return response
     
-    def do_get(self, url, json):
+    def do_get(self, url, data):
         headers = {
-            'Authorization': ('Bearer ' + self.token)
+            'Authorization': ('Bearer ' + self.token),
+            'Cli': 'cli'
         }
     
-        response = requests.get(url, headers=headers, json=json)
+        response = requests.get(url, headers=headers, data=data)
         return response
     
