@@ -23,10 +23,15 @@ source venv/bin/activate
 </code>
 Then run get-ip.py for example:
 <code>
-python get-ips.py
+python3 get-ips.py
 </code>
 
 It will output ip registered and valid on your mysafeip server
+
+To post an ip, you can use the web gui or this command:
+<code>
+python3 post-ip.py
+</code>
 
 ## Configure your firewall
 

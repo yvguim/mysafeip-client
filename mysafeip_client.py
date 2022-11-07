@@ -17,7 +17,10 @@ class Client():
         r = requests.post(url=url, data=data)
         response_text = r.text
         d = j.loads(response_text)   
-        self.token = d['access_token']
+        try: 
+            self.token = d['access_token']
+        except:
+            raise Exception("Incorrect username or password")
         return d
     
     def do_post(self, url, data):
