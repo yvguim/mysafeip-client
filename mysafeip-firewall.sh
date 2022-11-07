@@ -21,13 +21,13 @@ ipset create -exist mysafeipnet hash:net
 
 ## Configure your firewall rules. 
 # Be sure of your config with those two lines before addind a cron job!
-#iptables -I INPUT -m set ! --match-set hih src -m set ! --match-set private src -p tcp --dport 22 -j DROP
-#iptables -I INPUT -m set ! --match-set hih src -m set ! --match-set private src -p tcp --dport 22 -j LOG 
+#iptables -I INPUT -m set ! --match-set mysafeip src -m set ! --match-set mysafeipnet src -p tcp --dport 22 -j DROP
+#iptables -I INPUT -m set ! --match-set mysafeip src -m set ! --match-set mysafeipnet src -p tcp --dport 22 -j LOG 
 
 ##Here for docker applications for example:
-iptables -F DOCKER-USER
-iptables -I DOCKER-USER -m set ! --match-set mysafeip src -m set ! --match-set mysafeipnet src -j DROP
-iptables -I DOCKER-USER -m set ! --match-set mysafeip src -m set ! --match-set mysafeipnet src -j LOG
+#iptables -F DOCKER-USER
+#iptables -I DOCKER-USER -m set ! --match-set mysafeip src -m set ! --match-set mysafeipnet src -j DROP
+#iptables -I DOCKER-USER -m set ! --match-set mysafeip src -m set ! --match-set mysafeipnet src -j LOG
 
 # And now let's run the magic
 while sleep $delay
