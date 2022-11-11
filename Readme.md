@@ -35,7 +35,7 @@ python3 post-ip.py
 
 ## Configure your firewall
 
-`mysafeip-firewall.sh` is an example to run manually. Try it and adapt firewall rules to your nedd.
+`mysafeip-firewall.sh` is an example to run manually. Try it and adapt firewall rules to your needs.
 
 When you are really confident about your config, you can add it in crontab:
 
