@@ -3,7 +3,7 @@ Mysafeip-client allow user to interact with mysafeip server
 Those are simple examples which should be better soon.
 
 ## Install:
-1. Clone this repository
+1. Clone this repository 
 <code>
 $ git clone https://github.com/yvguim/mysafeip-client.git
 </code>
@@ -37,11 +37,12 @@ python3 post-ip.py
 
 `mysafeip-firewall.sh` is an example to run manually. Try it and adapt firewall rules to your needs.
 
-When you are really confident about your config, you can add it in crontab:
+When you are really confident about your config, you can add it in crontab (here mysafeip-client has been clone i /opt directory):
 
 <code>
 @reboot root rm /tmp/mysafeip.lock
-* * * * * root /usr/bin/flock -E 0 -n /tmp/mysafeip.lock /some_path/mysafeip-client/mysafeip-firewall.sh >/dev/null 2>&1
+* * * * * root /usr/bin/flock -x /tmp/mysafeip.lock -c '/opt/mysafeip-client/mysafeip-firewall.sh' >/dev/null 2>&1
+
 </code>
 
 

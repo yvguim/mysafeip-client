@@ -3,5 +3,5 @@ password = "your_password"
 base_url = "http://localhost:80"
 
 login_url = base_url + "/signin"
-post_ip_url = base_url + "/ips/create_ip"
-get_ips_url = base_url + "/ips/get_ips"
+post_ip_url = base_url + "/ips/config"
+get_ips_url = base_url + "/ips/config"

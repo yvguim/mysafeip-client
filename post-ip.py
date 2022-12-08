@@ -5,7 +5,10 @@ cli = Client(set.username,set.password)
 cli.do_auth(set.login_url)
 
 data = {
-        'ip' : ''
+        'ip' : '',
+        'action' : 'create',
+        'description' : 'created from python cli'
     }
 
 r = cli.do_post(set.post_ip_url, data)
+print(r)
