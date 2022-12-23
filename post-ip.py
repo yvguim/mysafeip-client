@@ -1,7 +1,7 @@
 from mysafeip_client import Client
 import settings as set
 
-cli = Client(set.username,set.password)
+cli = Client(set.key,set.secret)
 cli.do_auth(set.login_url)
 
 data = {

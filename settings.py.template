@@ -1,7 +1,7 @@
-username = "yourmail@example.com"
-password = "your_password"
+key = "token_key_created_with_your_account"
+secret = "token_secret_created_with_your_account"
 base_url = "http://localhost:80"
 
-login_url = base_url + "/signin"
+login_url = base_url + "/token-signin"
 post_ip_url = base_url + "/ips/config"
 get_ips_url = base_url + "/ips/config"

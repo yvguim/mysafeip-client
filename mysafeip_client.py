@@ -3,15 +3,15 @@ import requests
 
 class Client():
 
-    def __init__(self, username, password):
-         self.username = username
-         self.password = password
+    def __init__(self, key, secret):
+         self.key = key
+         self.secret = secret
          self.token = ""
 
     def do_auth(self, url):
         data = {
-            "username": self.username,
-            "password": self.password,
+            "key": self.key,
+            "secret": self.secret,
             "scope": "cli"
         }
         r = requests.post(url=url, data=data)

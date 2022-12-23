@@ -2,7 +2,7 @@ from mysafeip_client import Client
 import settings as set
 import json as j
 
-cli = Client(set.username,set.password)
+cli = Client(set.key,set.secret)
 cli.do_auth(set.login_url)
 json = ''
 r = cli.do_get(set.get_ips_url,json)
