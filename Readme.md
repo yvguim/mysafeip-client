@@ -17,7 +17,7 @@ It will build a virtualenv with all you need to run the examples.
 
 3. Copy settings.py.template to settings.py and edit those lines:
 ```
-set key = "Token Key generated on MySafeIp server"
+key = "Token Key generated on MySafeIp server"
 secret = "Token secret generated on MySafeIp server"
 base_url = "MySafeIp server url"
 ```
