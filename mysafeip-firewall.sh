@@ -28,6 +28,7 @@ ipset create -exist mysafeipnet hash:net
 #iptables -F DOCKER-USER
 #iptables -I DOCKER-USER -m set ! --match-set mysafeip src -m set ! --match-set mysafeipnet src -j DROP
 #iptables -I DOCKER-USER -m set ! --match-set mysafeip src -m set ! --match-set mysafeipnet src -j LOG
+#iptables -I DOCKER-USER -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
 # And now let's run the magic
 while sleep $delay
