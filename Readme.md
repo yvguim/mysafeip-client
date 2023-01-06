@@ -1,7 +1,7 @@
 # Mysafeip Client
 
 Mysafeip-client allow user to interact with [mysafeip server](https://github.com/yvguim/mysafeip).
-You should install it first: [https://github.com/yvguim/mysafeip-compose]
+You should install it first: https://github.com/yvguim/mysafeip-compose
 
 ## Install:
 1. Clone this repository 
