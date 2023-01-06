@@ -1,23 +1,30 @@
 # Mysafeip Client
 
-Mysafeip-client allow user to interact with mysafeip server.
-You should [install it first](https://github.com/yvguim/mysafeip-compose)
-
-[Want to know what is MySafeIp?](https://github.com/yvguim/mysafeip)
+Mysafeip-client allow user to interact with [mysafeip server](https://github.com/yvguim/mysafeip).
+You should install it first: [https://github.com/yvguim/mysafeip-compose]
 
 ## Install:
 1. Clone this repository 
 ```
-$ git clone https://github.com/yvguim/mysafeip-client.git
+cd /opt
+sudo git clone https://github.com/yvguim/mysafeip-client.git
 ```
 
 2. Run bootstrap.sh script.
-It will build a virtualenv with all you need to run the examples.
+It will build a virtualenv with all what you need to run the examples.
 ```
-./bootstrap.sh
+cd /opt/mysafeip-client/
+sudo ./bootstrap.sh
 ```
 
-3. Copy settings.py.template to settings.py and edit those lines:
+3. Copy settings.py.template to settings.py
+
+```
+sudo cp  settings.py.template settings.py
+```
+
+Edit the file settings.py:
+
 ```
 key = "Token Key generated on MySafeIp server"
 secret = "Token secret generated on MySafeIp server"
@@ -47,16 +54,19 @@ To post an ip, you can use the web gui or this command:
 ```
 python3 post-ip.py
 ```
+It should respond:
+```
+<Response [200]>
+```
 
 ## Configure your firewall
 
 mysafeip-firewall.sh is an example to run manually. Try it and adapt firewall rules to your needs.
 
-When you are really confident about your configuration, you can add it in crontab (here mysafeip-client has been clone in /opt directory):
+When you are really confident about your configuration, edit if necessary and copy cron-mysafeip file to /etc/cron.d:
 
 ```
-@reboot root rm /tmp/mysafeip.lock
-* * * * * root /usr/bin/flock -n /tmp/mysafeip.lock -c '/opt/mysafeip-client/mysafeip-firewall.sh' >/dev/null 2>&1
+sudo cp cron-mysafeip-client /etc/cron.d/
 ```
 
 
