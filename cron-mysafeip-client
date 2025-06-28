@@ -1,4 +1,0 @@
-SHELL=/bin/sh
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-@reboot root rm /tmp/mysafeip.lock
-* * * * * root /usr/bin/flock -n /tmp/mysafeip.lock -c '/opt/mysafeip-client/mysafeip-firewall.sh' >/dev/null 2>&1

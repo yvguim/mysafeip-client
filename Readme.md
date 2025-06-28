@@ -63,10 +63,12 @@ It should respond:
 
 mysafeip-firewall.sh is an example to run manually. Try it and adapt firewall rules to your needs.
 
-When you are really confident about your configuration, edit if necessary and copy cron-mysafeip file to /etc/cron.d:
+When you are really confident about your configuration, edit if necessary and copy mysafeip-firewall.service to /etc/systemd/system/ and start the service
 
 ```
-sudo cp cron-mysafeip-client /etc/cron.d/
+sudo cp  mysafeip-firewall.service /etc/systemd/system/mysafeip-firewall.service
+sudo systemctl daemon-reload
+sudo systemctl start mysafeip-firewall
 ```
 
 

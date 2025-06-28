@@ -1,0 +1,14 @@
+[Unit]
+Description=MySafeIP Firewall Client
+After=network.target systemd-networkd-wait-online.service
+
+[Service]
+Type=simple
+User=root
+ExecStartPre=/bin/sleep 30
+ExecStart=/opt/mysafeip-client/mysafeip-firewall.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

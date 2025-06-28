@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail  # Arrêt sur erreur
 
 # Delay between each server check
 delay=10
@@ -9,7 +10,17 @@ tmppath="/tmp"
 # Directory of your mysafeip-client.sh clone directory:
 # if readlink is not installed, set full path to mysafeip-client directory
 mysafeipdir=$(dirname "$(readlink -f "$0")")/
+command -v ipset >/dev/null || { logger LOG_MYSAFEIP_CLIENT : ipset not found; exit 1; }
+[[ -d "$mysafeipdir" ]] || { logger LOG_MYSAFEIP_CLIENT : Directory $mysafeipdir not found; exit 1; }
+
 logger LOG_MYSAFEIP_CLIENT : Script say client is available in ${mysafeipdir} directory
+
+# Fonctions
+
+is_valid_ip() {
+    local ip=$1
+    [[ $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]
+}
 
 
 # cleanup
@@ -42,8 +53,8 @@ logger LOG_MYSAFEIP_CLIENT : Activate venv
 logger LOG_MYSAFEIP_CLIENT : Entering loop
 while sleep $delay
 do
-    mv mysafeip.zone mysafeip.zone.previous
-    python3 ${mysafeipdir}get-ips.py | tee mysafeip.zone
+    cp mysafeip.zone mysafeip.zone.previous
+    python3 ${mysafeipdir}get-ips.py > mysafeip.zone
     if ! cmp mysafeip.zone mysafeip.zone.previous >/dev/null 2>&1
     then
         logger LOG_MYSAFEIP_CLIENT : Zone change
@@ -51,19 +62,19 @@ do
         ipset flush mysafeip
         ipset flush mysafeipnet
         
-        for i in '10.0.0.0/8' '172.16.0.0/12' '192.0.2.0/24' '192.168.0.0/16' '239.192.0.0/14';
-        do ipset -A -exist mysafeipnet $i && logger LOG_MYSAFEIP_CLIENT : Add $i in ipset mysafeipnet; done
+        for net in '10.0.0.0/8' '172.16.0.0/12' '192.0.2.0/24' '192.168.0.0/16' '239.192.0.0/14';
+        do 
+          ipset -A -exist mysafeipnet $net
+          logger LOG_MYSAFEIP_CLIENT : Add $net in ipset mysafeipnet
+        done
 
-        for i in $(cat mysafeip.zone);
+        for ip in $(cat mysafeip.zone);
           do
-             if [[ "$i" == 66.66.66.66 ]]
-             then
-               ipset -A -exist  mysafeipnet 0.0.0.0/1
-               ipset -A -exist  mysafeipnet 128.0.0.0/1
-               logger LOG_MYSAFEIP_CLIENT : Allow all networks
-             else
-               ipset -A -exist mysafeip $i && logger LOG_MYSAFEIP_CLIENT : Add $i in ipset mysafeip
-             fi
+           if is_valid_ip "$ip"; then
+                    ipset -A -exist mysafeip "$ip" && logger LOG_MYSAFEIP_CLIENT : Add $ip in ipset mysafeip
+                else
+                    logger LOG_MYSAFEIP_CLIENT : ERROR - Invalid IP address: $ip
+                fi
           done
     fi
 done
